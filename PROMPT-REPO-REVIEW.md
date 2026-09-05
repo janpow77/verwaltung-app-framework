@@ -52,8 +52,8 @@ Der Datenschutzbaustein muss das Muster aus regulierung abbilden:
 - Vier-Augen-Freigabe und Sperre der freigegebenen Fassung;
 - Neubewertung bei Änderung des VVT oder der Verarbeitung.
 
-Das Prozessmodell soll wie beim KPAnG nicht nur eine Liste sein, sondern eine
-erzwungene Status- und Übergangsmatrix mit Vorgangsakte, Chronologie, Fristen,
+Das Prozessmodell soll nicht nur eine Liste sein, sondern eine erzwungene
+Status- und Übergangsmatrix mit Vorgangsakte, Chronologie, Fristen,
 Dokumenten, Rückgabe/Korrektur, Freigabe, Betrieb und Neubewertung. Es muss zwei
 Einstiege zulassen:
 
@@ -95,7 +95,7 @@ Liefere einen Bericht mit genau diesen Abschnitten:
 3. Kritische Lücken vor produktiver Nutzung
 4. Best-of-Abgleich je Schwester-Repository
 5. DSFA/VVT-Prüfung
-6. KPAnG-artige Prozessprüfung
+6. Prozess- und Übergangsmatrix-Prüfung
 7. Rollen-, Mandanten- und Exportprüfung
 8. BSI-/Secure-by-Design-Prüfung
 9. Claude-/Codex-/Gemini-Tauglichkeit
@@ -108,4 +108,3 @@ Schließe mit einer klaren Entscheidung:
 - „nur als Konzept geeignet“ oder
 - „für produktionsnahe Nutzung bereit“.
 ``` 
-

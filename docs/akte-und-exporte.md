@@ -7,9 +7,9 @@ Steckbrief, Mandant, Verantwortliche, Repository-/Release-Referenz, Rollen,
 Workflow, VVT-/DSFA-Nachweise, Sicherheitsprüfungen, Tests, Fristen, Dokumente
 und die Chronologie zusammen.
 
-Analog zum KPAnG-Prinzip sind Fristen zu erledigen, nicht zu löschen. Dokumente
-und Freigaben bleiben mit Version, Prüfsumme, Ersteller und Freigeber
-nachvollziehbar. Änderungen erzeugen neue Fassungen.
+Fristen werden erledigt, nicht gelöscht. Dokumente und Freigaben bleiben mit
+Version, Prüfsumme, Ersteller und Freigeber nachvollziehbar. Änderungen
+erzeugen neue Fassungen.
 
 ## Exportarten
 
@@ -24,4 +24,3 @@ nachvollziehbar. Änderungen erzeugen neue Fassungen.
 Jeder Export erhält mindestens Projekt-/Mandantenkennung, Erstellungszeitpunkt,
 Framework-Version und auslösende Person. Exportberechtigungen sind eigene
 Rechte; ein Datenbankzugriff darf nicht automatisch einen Voll-Export erlauben.
-

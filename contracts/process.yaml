@@ -1,6 +1,6 @@
 name: verwaltungs-app-lifecycle
 version: 1
-description: KPAnG-inspirierte generische Projekt- und Landingprozessmaschine
+description: Generische Projekt- und Landingprozessmaschine für Verwaltungsanwendungen
 entrypoints:
   - idee_eingegangen
   - framework_start
@@ -42,4 +42,3 @@ rules:
     text: VVT und erforderliche DSFA müssen vor der Freigabe nachgewiesen sein.
   - id: immutable-release
     text: Freigegebene Fassungen werden nicht überschrieben.
-

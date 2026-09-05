@@ -1,4 +1,4 @@
-"""KPAnG-inspirierte Statusmaschine für eine generische Projektakte."""
+"""Generische Statusmaschine für eine Verwaltungs-Projektakte."""
 
 from __future__ import annotations
 

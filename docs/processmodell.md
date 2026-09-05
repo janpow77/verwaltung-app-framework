@@ -2,10 +2,10 @@
 
 ## Grundidee
 
-Das Framework übernimmt vom KPAnG-Modell die konsequente Verbindung von
-Statusmaschine, Akte, Chronologie, Fristen, Dokumenten und Freigabegates. Jeder
-Statuswechsel ist eine fachliche Handlung mit Person, Zeit, Begründung sowie
-Vorher/Nachher. Ein Übergang außerhalb der Matrix ist nicht zulässig.
+Das Framework verbindet Statusmaschine, Akte, Chronologie, Fristen, Dokumente
+und Freigabegates. Jeder Statuswechsel ist eine fachliche Handlung mit Person,
+Zeit, Begründung sowie Vorher/Nachher. Ein Übergang außerhalb der Matrix ist
+nicht zulässig.
 
 ## Zwei zulässige Einstiege
 
@@ -67,4 +67,3 @@ Die Projektakte enthält mindestens:
 - Sicherheitsbaseline, Tests, Abhängigkeiten und offene Risiken
 - Präsentations-/Landingprotokoll und Freigabeentscheidung
 - Dokumente, Exporte, Fristen und unveränderliche Chronologie
-

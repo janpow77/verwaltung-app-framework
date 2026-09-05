@@ -20,9 +20,9 @@ erfunden.
 
 ## Prozessmodell
 
-Der Lebenszyklus ist an das KPAnG-Vorgehen angelehnt: ein Vorgang mit Akte,
-Statusmaschine, Übergangsmatrix, Chronologie, Fristen, Dokumenten,
-Zweitprüfung und Gesamt-Export. Die generische Statusmaschine liegt in
+Der Lebenszyklus ist als nachvollziehbarer Verwaltungsprozess aufgebaut: ein
+Vorgang mit Akte, Statusmaschine, Übergangsmatrix, Chronologie, Fristen,
+Dokumenten, Zweitprüfung und Gesamt-Export. Die generische Statusmaschine liegt in
 `framework/core/process.py`; das fachliche Modell ist in
 `docs/processmodell.md` und `contracts/process.yaml` beschrieben.
 
