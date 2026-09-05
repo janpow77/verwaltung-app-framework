@@ -1,0 +1,45 @@
+name: verwaltungs-app-lifecycle
+version: 1
+description: KPAnG-inspirierte generische Projekt- und Landingprozessmaschine
+entrypoints:
+  - idee_eingegangen
+  - framework_start
+statuses:
+  - id: idee_eingegangen
+    terminal: false
+  - id: workshop
+    terminal: false
+  - id: framework_start
+    terminal: false
+  - id: in_entwicklung
+    terminal: false
+  - id: vorstellung
+    terminal: false
+  - id: fachpruefung
+    terminal: false
+  - id: datenschutzpruefung
+    terminal: false
+  - id: sicherheitspruefung
+    terminal: false
+  - id: freigabevorlage
+    terminal: false
+  - id: freigegeben
+    terminal: false
+  - id: betrieb
+    terminal: false
+  - id: neubewertung
+    terminal: false
+  - id: zurueckgegeben
+    terminal: false
+  - id: abgebrochen
+    terminal: true
+rules:
+  - id: framework-first
+    text: Eigenentwicklungen beginnen im Framework vor der Vorstellung.
+  - id: four-eyes
+    text: Ersteller und Freigeber müssen verschieden sein.
+  - id: privacy-gate
+    text: VVT und erforderliche DSFA müssen vor der Freigabe nachgewiesen sein.
+  - id: immutable-release
+    text: Freigegebene Fassungen werden nicht überschrieben.
+

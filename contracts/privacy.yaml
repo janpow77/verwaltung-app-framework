@@ -1,0 +1,74 @@
+name: privacy-evidence-contract
+version: 2
+description: >-
+  Nachweisvertrag für Verzeichnis, Schwellwertanalyse und
+  Datenschutz-Folgenabschätzung. Die Feldlisten folgen Art. 30 Abs. 1 und
+  Art. 35 Abs. 7 DSGVO; checks/validate_repo.py prüft sie gegen die Modelle
+  in framework/core/models.py.
+documents:
+  - verarbeitungsverzeichnis
+  - schwellwertanalyse
+  - dsfa
+  - dsb_stellungnahme
+required_fields:
+  # Art. 30 Abs. 1 DSGVO; legal_basis ist dort nicht ausdrücklich genannt,
+  # gehört aber in jedes behördliche VVT-Muster.
+  verarbeitungsverzeichnis:
+    - purpose            # lit. b
+    - legal_basis        # Art. 6, ggf. Art. 9 DSGVO
+    - affected_persons   # lit. c
+    - data_categories    # lit. c
+    - recipients         # lit. d
+    - third_country_transfer      # lit. e
+    - third_country_safeguards    # lit. e, Art. 46/49
+    - retention          # lit. f
+    - retention_legal_basis
+    - security_measures  # lit. g, Art. 32 Abs. 1
+    - controller         # lit. a
+    - processing_agreement        # Art. 28 Abs. 3
+    - joint_controllers           # Art. 26
+  # Art. 35 Abs. 7 lit. a bis d DSGVO, ergänzt um Abs. 2, Abs. 9 und Art. 36.
+  dsfa:
+    - activity_id           # lit. a
+    - vvt_version           # lit. a
+    - activity_snapshot     # lit. a
+    - screening_answers
+    - system_suggestion
+    - necessity             # lit. b
+    - proportionality       # lit. b
+    - risk_scenarios        # lit. c
+    - mitigation_measures   # lit. d
+    - data_subject_view     # Art. 35 Abs. 9
+    - human_decision
+    - decided_by
+    - decided_at
+    - dsb_statement         # Art. 35 Abs. 2
+    - dsb_vote
+    - dsb_involved_at
+    - released_by
+    - released_at
+release_rules:
+  - human_decision_required
+  - decision_attributable_to_person
+  - necessity_and_proportionality_required   # Art. 35 Abs. 7 lit. b
+  - at_least_one_risk_scenario               # Art. 35 Abs. 7 lit. c
+  - at_least_one_mitigation_measure          # Art. 35 Abs. 7 lit. d
+  - dsb_statement_required                   # Art. 35 Abs. 2
+  - dsb_rejection_blocks_release_without_justification
+  - high_residual_risk_requires_authority_consultation  # Art. 36 Abs. 1
+  - creator_cannot_release
+  - released_version_locked
+  - vvt_change_requires_reassessment         # Art. 35 Abs. 11
+  - reassessment_creates_successor_version
+screening:
+  # Harte Auslöser stehen im Katalog, nicht als Aufrufparameter.
+  hard_trigger_sources:
+    - Art. 35 Abs. 3 lit. a DSGVO
+    - Art. 35 Abs. 3 lit. b DSGVO
+    - Art. 35 Abs. 3 lit. c DSGVO
+    - Muss-Liste der Aufsichtsbehörde nach Art. 35 Abs. 4 DSGVO
+  point_criteria_source: WP 248 rev.01
+  point_criteria_count: 9
+  threshold: 2
+  answers_must_be_boolean: true
+  unknown_answer_keys_rejected: true

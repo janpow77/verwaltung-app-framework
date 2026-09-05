@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" id="frameworkLanding" targetNamespace="https://flowaudit.de/framework">
+  <process id="verwaltungAppLifecycle" name="Framework-first Landingprozess" isExecutable="false">
+    <startEvent id="start" name="Bedarf oder Eigeninitiative"/>
+    <exclusiveGateway id="entry" name="Einstieg"/>
+    <task id="workshop" name="Bottom-up-Workshop und Priorisierung"/>
+    <task id="framework" name="Projekt im Framework anlegen"/>
+    <task id="develop" name="Fachmodul mit Claude oder Codex entwickeln"/>
+    <task id="present" name="Projekt vorstellen"/>
+    <task id="specialistReview" name="Fachprüfung"/>
+    <task id="privacyReview" name="VVT und Schwellwertanalyse"/>
+    <exclusiveGateway id="dsfaRequired" name="DSFA erforderlich?"/>
+    <task id="dsfa" name="DSFA je Verarbeitung und DSB-Beteiligung"/>
+    <task id="security" name="Sicherheitsbaseline und Tests"/>
+    <task id="release" name="Vier-Augen-Freigabe"/>
+    <exclusiveGateway id="approved" name="Freigegeben?"/>
+    <task id="operation" name="Versionierter Betrieb"/>
+    <task id="reassessment" name="Neubewertung bei Änderung"/>
+    <endEvent id="end" name="Betrieb oder Abbruch"/>
+    <sequenceFlow id="f1" sourceRef="start" targetRef="entry"/>
+    <sequenceFlow id="f2" sourceRef="entry" targetRef="workshop" name="Hausbedarf"/>
+    <sequenceFlow id="f3" sourceRef="entry" targetRef="framework" name="Eigeninitiative"/>
+    <sequenceFlow id="f4" sourceRef="workshop" targetRef="framework"/>
+    <sequenceFlow id="f5" sourceRef="framework" targetRef="develop"/>
+    <sequenceFlow id="f6" sourceRef="develop" targetRef="present"/>
+    <sequenceFlow id="f7" sourceRef="present" targetRef="specialistReview"/>
+    <sequenceFlow id="f8" sourceRef="specialistReview" targetRef="privacyReview"/>
+    <sequenceFlow id="f9" sourceRef="privacyReview" targetRef="dsfaRequired"/>
+    <sequenceFlow id="f10" sourceRef="dsfaRequired" targetRef="dsfa" name="ja"/>
+    <sequenceFlow id="f11" sourceRef="dsfaRequired" targetRef="security" name="nein, dokumentiert"/>
+    <sequenceFlow id="f12" sourceRef="dsfa" targetRef="security"/>
+    <sequenceFlow id="f13" sourceRef="security" targetRef="release"/>
+    <sequenceFlow id="f14" sourceRef="release" targetRef="approved"/>
+    <sequenceFlow id="f15" sourceRef="approved" targetRef="operation" name="ja"/>
+    <sequenceFlow id="f16" sourceRef="approved" targetRef="develop" name="zur Korrektur"/>
+    <sequenceFlow id="f17" sourceRef="operation" targetRef="reassessment" name="relevante Änderung"/>
+    <sequenceFlow id="f18" sourceRef="reassessment" targetRef="privacyReview"/>
+    <sequenceFlow id="f19" sourceRef="operation" targetRef="end" name="weiterer Betrieb oder Abbruch"/>
+  </process>
+</definitions>
