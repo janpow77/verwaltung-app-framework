@@ -1,3 +1,7 @@
+# Historische Vorlage
+
+Diese ältere Skizze ist nicht der aktuelle Einstieg. Verwende docs/start.md und die Unterlagen unter vorlagen/; siehe README.md im Repository-Stamm.
+
 # Neue Fachanwendung
 
 Dieses Verzeichnis ist der Startpunkt für ein neues Fachmodul. Die Fachlogik
@@ -7,4 +11,3 @@ Exportpakete genutzt.
 
 Vor dem ersten Commit sind `AGENTS.md`, die Fachanwendungs-Skill und die
 Projektakte zu vervollständigen.
-

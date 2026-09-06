@@ -1,73 +1,47 @@
-# Verwaltungs-App-Framework
+# Verwaltungs-App-Framework – Inhalte für Säule 2
 
-Secure-by-Default-Template für kleine, KI-gestützt entwickelte
-Verwaltungsanwendungen.
+Dieses Repository bündelt Anforderungen, Agentenanweisungen, Skills und Projektvorlagen für KI-gestützte Fachanwendungen aus der Verwaltung.
 
-Das Repository ist der gemeinsame Startpunkt für Beschäftigte, Fachreferate,
-IT und Entwicklungsagenten. Eine eigene Anwendung wird vom ersten Commit an in
-diesem Gerüst entwickelt. Claude, Codex oder ein anderer Agent ergänzt die
-Fachlogik; Identität, Mandantentrennung, Rollen, Berechtigungen, Auditierung,
-Versionierung, Datenschutz, Tests und Freigaben werden nicht jedes Mal neu
-erfunden.
+Beschäftigte nutzen diese Inhalte bereits beim Start einer eigenen Entwicklung. Claude, Codex oder Gemini setzen die Anwendung anhand der Spezifikation und Vorgaben um. Anschließend wird das Projekt im Landingprozess vorgestellt und geprüft.
 
-## Zwei Säulen
+## Hier beginnen
 
-1. **Datenauswertungen**: optionale Module wie `flowstat` übernehmen
-   Datenaufbereitung, Stichprobe, Plausibilität, Statistik, GIS und Exporte.
-2. **Fachanwendungen**: Formulare, Vorgänge, Zuständigkeiten, Workflows,
-   Dokumente, Fristen und Freigaben werden als fachliches Modul auf dem
-   Framework-Kern aufgebaut.
+1. [Startanleitung](docs/start.md)
+2. [Anforderungen und Prüfkriterien](docs/anforderungen.md)
+3. [Projektsteckbrief, Rollenmatrix und Prozessmodell](vorlagen/projekt.md)
+4. [VVT und DSFA-Vorprüfung](vorlagen/datenschutz.md)
+5. [Entwicklungsauftrag](prompts/entwicklung.md) und [unabhängiges Review](prompts/review.md)
+6. [Vorstellung und Betriebsbedarf](vorlagen/landing.md)
+7. [Zusammenhängendes Musterpaket: Raumbuchung](beispiele/raumbuchung/README.md)
+8. [Pflege und Nachnutzung](docs/pflege-und-nachnutzung.md)
 
-## Prozessmodell
+## Verbindliche Inhalte im Überblick
 
-Der Lebenszyklus ist als nachvollziehbarer Verwaltungsprozess aufgebaut: ein
-Vorgang mit Akte, Statusmaschine, Übergangsmatrix, Chronologie, Fristen,
-Dokumenten, Zweitprüfung und Gesamt-Export. Die generische Statusmaschine liegt in
-`framework/core/process.py`; das fachliche Modell ist in
-`docs/processmodell.md` und `contracts/process.yaml` beschrieben.
+- [MUSS, bedingte Anforderungen und SOLL](docs/verbindlichkeit.md)
+- [Administrative Rollen und Kontenlebenszyklus](docs/administration.md)
+- [Prüfkatalog](docs/pruefkatalog.md) und [Testplan](vorlagen/testplan.md)
+- [Durchgängiger KI-Arbeitsablauf](docs/ki-arbeitsablauf.md)
+- [Anwendbarkeit und offene Entscheidungen](vorlagen/anwendbarkeit.md)
+- [Inhaltsrelease und Zuständigkeiten](vorlagen/release.md)
 
-Für Eigenentwicklungen gilt: Das Template wird **vor** der Vorstellung genutzt.
-Der Landingprozess prüft ein bereits framework-konform entwickeltes Projekt;
-er ersetzt nicht den Framework-Start.
+## Umfang und Stand
 
-## Datenschutz- und DSFA-Werkzeug
+Inhaltsversion: 0.2.0 · Stand: 2026-09-06. Das Ergebnis dieser Phase ist das Inhalts-Repository.
+Mandanten, Nutzerrechte, Akten, Exporte und Datenschutz sind Anforderungen an die entstehende Anwendung. Eine fertige GUI oder produktive Dienste werden in dieser Phase nicht zugesagt.
 
-`framework/core/dsfa.py` bildet den aus `regulierung` übernommenen Ablauf ab:
+Unvollständige Softwareentwürfe liegen ausschließlich im [Archiv](archiv/README.md). Der Python-Kern unter framework/ bleibt separat als getestete Referenzlogik erhalten. Beides gehört nicht zum zu übernehmenden Projektpaket. Details: [ADR-004](docs/adr/ADR-004-inhalts-framework.md).
 
-- VVT mit stabiler Tätigkeits-ID und Versionsstand
-- Schwellwertanalyse als dokumentierte Systemempfehlung
-- DSFA je Verarbeitungstätigkeit mit VVT-Snapshot
-- Risikoszenarien und Maßnahmen
-- menschliche Entscheidung mit Begründung bei Abweichung
-- Beteiligung und Stellungnahme des Datenschutzbeauftragten
-- Vier-Augen-Freigabe und unveränderliche freigegebene Fassung
-- erneute Prüfung, wenn sich der VVT-Snapshot ändert
+## Zwei Säulen im Pilotprogramm
 
-Die technische Referenzimplementierung ist bewusst dependency-arm und dient als
-Vertrags-/Testkern. Die produktive Webanwendung kann darauf FastAPI,
-SQLAlchemy, PostgreSQL, OIDC/Keycloak und eine TypeScript-Oberfläche setzen.
+Datenauswertungen werden im Workshop fachlich aufgesetzt. Dieses Inhalts-Framework unterstützt insbesondere Säule 2: eigene Fachanwendungen mit Formularen, Vorgängen und Berechtigungen. Hausbedarf und Eigeninitiative sind beide mögliche Einstiege.
 
-## Schnell prüfen
+AGENTS.md ist die gemeinsame Arbeitsgrundlage. CLAUDE.md, CODEX.md und GEMINI.md verweisen darauf. Skills konkretisieren Aufgaben; die Umsetzung und ihre Nachweise werden im jeweiligen Projekt geprüft.
+
+## Prüfen
 
 ```bash
 python3 -m unittest discover -s tests -v
 python3 checks/validate_repo.py
 ```
 
-## KI-Entwicklung
-
-Vor jeder Änderung lesen Agenten `AGENTS.md`, die passende Skill-Datei und die
-relevanten ADRs. Verbindliche Regeln liegen in `AGENTS.md`; `CLAUDE.md` und
-`CODEX.md` sind kurze Einstiegspunkte für die jeweiligen Werkzeuge.
-
-## Herkunft der Bausteine
-
-- `audit_designer`: modulare FastAPI-/Datenverarbeitungs- und Agentenstruktur,
-  flowstat, Versionierung, Auditierung und Exportmuster
-- `flowaudit`: modulare Fachanwendungen, Berichts- und Tabellenexporte,
-  Docker-/Health-/Testmuster
-- `regulierung`: OIDC/Keycloak, Rollen und Rechte, Mandanten, Audit-/Access-Log,
-  VVT/DSFA, DSB-Beteiligung, Vier-Augen-Freigabe und unveränderliche Fassungen
-
-Konkrete Fachdomänen aus den Quell-Repositories werden nicht in den Kern
-kopiert.
+Diese Prüfungen betreffen Referenzkern und Inhaltsstruktur, nicht die Betriebsfähigkeit einer erzeugten Anwendung.

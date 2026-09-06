@@ -1,9 +1,10 @@
 # Rollen- und Rechtekonzept
 
+Die Anwendbarkeit bestimmt docs/verbindlichkeit.md. Kontenlebenszyklus, Vertretung und Rechteentzug sind in [Administration](administration.md) konkretisiert. Die Rollenliste ist eine Auswahl für das Projekt, kein Zwang zu identischen Organisationsrollen.
+
 ## Mandantenmodell
 
-Jedes Projekt, jede Verarbeitungstätigkeit, jedes Dokument und jeder Export
-trägt einen `tenant_id`. Die API prüft den Datenraum vor der Fachlogik. Ein
+Bei Mehrmandantenbetrieb wird jedes Projekt, jede Verarbeitungstätigkeit, jedes Dokument und jeder Export eindeutig einem Datenraum zugeordnet (z. B. über eine `tenant_id`). Die API prüft den Datenraum vor der Fachlogik. Ein
 Plattformadministrator darf mandantenübergreifend administrieren; ein
 Mandantenadministrator bleibt auf seinen Mandanten begrenzt.
 
@@ -21,7 +22,6 @@ Mandantenadministrator bleibt auf seinen Mandanten begrenzt.
 | Auditor | lesender Nachweiszugriff und Export | nein |
 | Lesezugriff | lesende Fachansicht im zugewiesenen Mandanten | nein |
 
-Die Referenzrechte stehen in `framework/core/permissions.py`. Die produktive
+Optionale Referenzrechte stehen im Framework-Repository in `framework/core/permissions.py`; sie sind keine automatisch übernommene Implementierung. Die produktive
 Persistenz muss Rollen aus dem Behörden-IdP oder einem verwalteten
 Rollenkatalog beziehen und darf Fachmodule nicht mit UI-only-Rechten absichern.
-

@@ -17,10 +17,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED = (
+    "docs/start.md", "docs/adr/ADR-004-inhalts-framework.md",
+    "vorlagen/projekt.md", "vorlagen/datenschutz.md", "vorlagen/landing.md",
+    "prompts/entwicklung.md", "prompts/review.md", "beispiele/raumbuchung.md",
+    "docs/pflege-und-nachnutzung.md",
     "AGENTS.md", "CLAUDE.md", "CODEX.md", "GEMINI.md", "docs/anforderungen.md",
     "docs/processmodell.md", "docs/dsfa-werkzeug.md", "docs/security/bsi-baseline.md",
     "docs/rollen-und-rechte.md", "docs/akte-und-exporte.md",
     "contracts/process.yaml", "contracts/privacy.yaml", "skills/fachanwendung/SKILL.md",
+"INHALTSVERSION", "docs/verbindlichkeit.md", "docs/administration.md",
+    "docs/pruefkatalog.md", "docs/ki-arbeitsablauf.md",
+    "vorlagen/anwendbarkeit.md", "vorlagen/testplan.md", "vorlagen/release.md",
+    "beispiele/raumbuchung/README.md", "beispiele/raumbuchung/spezifikation.md",
+    "beispiele/raumbuchung/anwendbarkeit.md", "beispiele/raumbuchung/datenschutz.md",
+    "beispiele/raumbuchung/testplan.md", "beispiele/raumbuchung/landing.md",
+    "archiv/README.md", ".github/CODEOWNERS",
 )
 
 AGENTS_TERMS = ("Mandantentrennung", "serverseitig", "Vier-Augen-Prinzip", "VVT", "DSFA")
@@ -142,6 +153,20 @@ def main() -> int:
             f"Framework-Version weicht ab: pyproject {v_pyproject.group(1)} "
             f"gegen Code {v_code.group(1)}"
         )
+
+    # Fachdomänen bleiben außerhalb des generischen Frameworks.
+    verboten = ("kpang", "kraftstoff", "tankstelle", "bussgeld", "bußgeld")
+    for pfad in ROOT.rglob("*"):
+        if (not pfad.is_file() or ".git" in pfad.parts or "graphify-out" in pfad.parts
+                or any(part in pfad.parts for part in ("archiv", "node_modules", ".venv", "__pycache__"))
+                or pfad == ROOT / "checks/validate_repo.py"):
+            continue
+        try:
+            text = pfad.read_text(encoding="utf-8").lower()
+        except UnicodeDecodeError:
+            continue
+        if any(term in text for term in verboten):
+            fehler.append(f"Fachdomänenbezug in generischem Framework: {pfad.relative_to(ROOT)}")
 
     if fehler:
         print("Prüfung fehlgeschlagen:")

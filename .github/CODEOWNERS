@@ -1,0 +1,14 @@
+# Schutzbereiche: Änderungen brauchen die Prüfung der Framework-Verantwortung.
+* @janpow77
+/framework/core/ @janpow77
+/archiv/softwareentwuerfe/apps/backend/app/auth/ @janpow77
+/archiv/softwareentwuerfe/apps/backend/app/db/ @janpow77
+/archiv/softwareentwuerfe/apps/backend/alembic/ @janpow77
+/contracts/ @janpow77
+/docs/security/ @janpow77
+
+/docs/ @janpow77
+/vorlagen/ @janpow77
+/prompts/ @janpow77
+/beispiele/ @janpow77
+/INHALTSVERSION @janpow77

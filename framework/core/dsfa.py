@@ -39,7 +39,8 @@ MINDESTLAENGE_BEGRUENDUNG = 30
 #: Ab diesem Restrisiko ist die Aufsichtsbehörde vorher zu konsultieren.
 RESTRISIKO_KONSULTATION = "hoch"
 
-RESTRISIKOSTUFEN = ("gering", "mittel", "hoch")
+#: Einheitliche Skala für Schwere, Eintrittswahrscheinlichkeit und Restrisiko.
+RISIKOSTUFEN = ("gering", "mittel", "hoch")
 
 DSB_VOTEN = ("zustimmend", "mit_auflagen", "ablehnend")
 
@@ -243,9 +244,12 @@ def evaluate_screening(answers: dict[str, Any], *, threshold: int = 2) -> dict[s
             "gleichwohl zu dokumentieren (Art. 5 Abs. 2 DSGVO)."
         )
 
+    unbeantwortet = [k.key for k in katalog() if k.key not in answers]
     return {
         "criteria": punkte,
         "hard_triggers": hart,
+        "unanswered": unbeantwortet,
+        "complete": not unbeantwortet,
         "sources": fundstellen,
         "score": score,
         "threshold": threshold,
@@ -318,8 +322,15 @@ def add_risk_scenario(
     _pruefe_offen(assessment)
     if not description.strip():
         raise ValueError("Ein Risikoszenario braucht eine Beschreibung")
-    if residual_risk not in RESTRISIKOSTUFEN:
-        raise ValueError(f"Restrisiko muss eine der Stufen {RESTRISIKOSTUFEN} sein")
+    for bezeichnung, wert in (
+        ("Schwere", severity),
+        ("Eintrittswahrscheinlichkeit", likelihood),
+        ("Restrisiko", residual_risk),
+    ):
+        if wert not in RISIKOSTUFEN:
+            raise ValueError(
+                f"{bezeichnung} muss eine der Stufen {RISIKOSTUFEN} sein, war: {wert!r}"
+            )
     assessment.risk_scenarios.append({
         "description": description,
         "severity": severity,
@@ -347,11 +358,11 @@ def highest_residual_risk(assessment: DsfaAssessment) -> str | None:
     stufen = [
         s.get("residual_risk")
         for s in assessment.risk_scenarios
-        if s.get("residual_risk") in RESTRISIKOSTUFEN
+        if s.get("residual_risk") in RISIKOSTUFEN
     ]
     if not stufen:
         return None
-    return max(stufen, key=RESTRISIKOSTUFEN.index)
+    return max(stufen, key=RISIKOSTUFEN.index)
 
 
 def set_human_decision(
@@ -437,6 +448,14 @@ def release_dsfa(
     if not assessment.dsb_statement or not assessment.dsb_vote:
         raise ValueError("DSB-Beteiligung fehlt (Art. 35 Abs. 2 DSGVO)")
 
+    if not (assessment.system_suggestion or {}).get("complete", True):
+        offen = (assessment.system_suggestion or {}).get("unanswered") or []
+        raise ValueError(
+            "Die Schwellwertanalyse ist unvollständig; unbeantwortet sind "
+            f"{len(offen)} Kriterien: {', '.join(offen[:5])}"
+            + (" …" if len(offen) > 5 else "")
+        )
+
     if assessment.human_decision == "durchfuehren":
         if not assessment.necessity.strip() or not assessment.proportionality.strip():
             raise ValueError(
@@ -485,7 +504,27 @@ def release_dsfa(
     assessment.locked = True
 
 
+def _pruefe_bezug(assessment: DsfaAssessment, activity: ProcessingActivity) -> None:
+    """Stellt sicher, dass Abschätzung und Tätigkeit zusammengehören.
+
+    Ohne diese Prüfung vergliche ein Aufrufer versehentlich zwei unabhängige
+    Datensätze: die Versionsnummern passten zufällig, der Feld-Diff wäre
+    sinnlos, und eine Folgefassung übernähme den fremden Mandanten.
+    """
+    if assessment.activity_id != activity.id:
+        raise ValueError(
+            f"Abschätzung gehört zur Tätigkeit {assessment.activity_id}, "
+            f"übergeben wurde {activity.id}"
+        )
+    if assessment.tenant_id != activity.tenant_id:
+        raise ValueError(
+            "Abschätzung und Verarbeitungstätigkeit gehören zu verschiedenen "
+            "Mandanten"
+        )
+
+
 def requires_reassessment(assessment: DsfaAssessment, activity: ProcessingActivity) -> bool:
+    _pruefe_bezug(assessment, activity)
     return assessment.vvt_version != activity.vvt_version
 
 
@@ -493,6 +532,7 @@ def snapshot_differences(
     assessment: DsfaAssessment, activity: ProcessingActivity
 ) -> list[dict[str, Any]]:
     """Wesentliche Unterschiede zwischen Snapshot und aktuellem VVT-Stand."""
+    _pruefe_bezug(assessment, activity)
     aktuell = activity_snapshot(activity)
     vorher = assessment.activity_snapshot or {}
     unbeachtlich = {"vvt_version", "updated_at"}
@@ -522,8 +562,14 @@ def start_reassessment(
     erfassen ist. Die Unterschiede zur Vorfassung stehen im Vorschlag, damit
     sichtbar ist, was zu prüfen ist (Art. 35 Abs. 11 DSGVO).
     """
+    _pruefe_bezug(assessment, activity)
     if assessment.status == "abgeloest":
         raise ValueError("Diese Fassung ist bereits abgelöst")
+    if not assessment.locked:
+        raise ValueError(
+            "Nur eine freigegebene Fassung wird abgelöst. Eine offene Fassung "
+            "ist zu bearbeiten, nicht durch eine Folgefassung zu ersetzen."
+        )
     unterschiede = snapshot_differences(assessment, activity)
     nachfolger = DsfaAssessment(
         id=new_id,

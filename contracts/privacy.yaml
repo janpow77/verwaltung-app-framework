@@ -48,6 +48,8 @@ required_fields:
     - released_by
     - released_at
 release_rules:
+  - screening_must_be_complete              # jede Katalogfrage beantwortet
+  - assessment_must_match_activity_and_tenant
   - human_decision_required
   - decision_attributable_to_person
   - necessity_and_proportionality_required   # Art. 35 Abs. 7 lit. b
@@ -72,3 +74,8 @@ screening:
   threshold: 2
   answers_must_be_boolean: true
   unknown_answer_keys_rejected: true
+  unanswered_criteria_block_release: true
+risk_scale:
+  # Eine Skala für Schwere, Eintrittswahrscheinlichkeit und Restrisiko.
+  levels: [gering, mittel, hoch]
+  consultation_from: hoch                   # Art. 36 Abs. 1 DSGVO

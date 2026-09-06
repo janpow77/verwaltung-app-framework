@@ -10,6 +10,7 @@ from framework.core.dsfa import (
     evaluate_screening,
     highest_residual_risk,
     katalog,
+    RISIKOSTUFEN,
     record_authority_consultation,
     release_dsfa,
     requires_reassessment,
@@ -38,6 +39,17 @@ def activity(**overrides) -> ProcessingActivity:
     return ProcessingActivity(**daten)
 
 
+def alle_antworten(**ja: bool) -> dict:
+    """Vollständig beantworteter Katalog; genannte Kriterien auf True.
+
+    Eine Freigabe setzt die vollständige Schwellwertanalyse voraus — ein
+    Fixture mit zwei beantworteten von zwölf Fragen wäre nicht realistisch.
+    """
+    antworten = {k.key: False for k in katalog()}
+    antworten.update(ja)
+    return antworten
+
+
 def context() -> ExportContext:
     return ExportContext(tenant_id="mandant-a", actor_id="u-1", project_id="projekt-1")
 
@@ -46,7 +58,7 @@ def vollstaendige_dsfa(assessment_id="dsfa-1", created_by="u-1"):
     """DSFA mit allen Pflichtbestandteilen nach Art. 35 Abs. 7 lit. a bis d."""
     assessment = create_dsfa(
         activity(), assessment_id=assessment_id, created_by=created_by,
-        answers={"sensible_daten": True, "systematische_beobachtung": True},
+        answers=alle_antworten(sensible_daten=True, systematische_beobachtung=True),
     )
     set_necessity(
         assessment,
@@ -190,8 +202,8 @@ class DsfaTests(unittest.TestCase):
 
     def test_freigabe_ohne_risikoszenarien_scheitert(self):
         assessment = create_dsfa(
-            activity(), assessment_id="d", created_by="u-1", answers={"sensible_daten": True,
-                                                                     "systematische_beobachtung": True},
+            activity(), assessment_id="d", created_by="u-1",
+            answers=alle_antworten(sensible_daten=True, systematische_beobachtung=True),
         )
         set_necessity(assessment, necessity="erforderlich", proportionality="verhältnismäßig")
         set_human_decision(assessment, decision="durchfuehren", actor_id="u-3")
@@ -317,6 +329,54 @@ class RechteUndExportTests(unittest.TestCase):
         self.assertIn("'=cmd", ausgabe)
         self.assertEqual(entschaerfe("+42"), "'+42")
         self.assertEqual(entschaerfe("harmlos"), "harmlos")
+
+
+class BezugUndSkalaTests(unittest.TestCase):
+    """Regressionen aus der Selbstprüfung der Umsetzung."""
+
+    def test_fremde_taetigkeit_wird_abgewiesen(self):
+        assessment = vollstaendige_dsfa()
+        fremd = activity(id="taet-99")
+        with self.assertRaisesRegex(ValueError, "gehört zur Tätigkeit"):
+            requires_reassessment(assessment, fremd)
+        with self.assertRaisesRegex(ValueError, "gehört zur Tätigkeit"):
+            snapshot_differences(assessment, fremd)
+
+    def test_fremder_mandant_wird_abgewiesen(self):
+        assessment = vollstaendige_dsfa()
+        with self.assertRaisesRegex(ValueError, "verschiedenen"):
+            requires_reassessment(assessment, activity(tenant_id="mandant-b"))
+
+    def test_neubewertung_nur_aus_freigegebener_fassung(self):
+        assessment = vollstaendige_dsfa()
+        with self.assertRaisesRegex(ValueError, "freigegebene Fassung"):
+            start_reassessment(assessment, activity(vvt_version=2),
+                               new_id="x", actor_id="u-4")
+
+    def test_risikoskala_wird_erzwungen(self):
+        assessment = vollstaendige_dsfa()
+        for feld in ("severity", "likelihood", "residual_risk"):
+            werte = dict(severity="gering", likelihood="gering", residual_risk="gering")
+            werte[feld] = "banane"
+            with self.assertRaisesRegex(ValueError, "muss eine der Stufen"):
+                add_risk_scenario(assessment, description="X", **werte)
+        self.assertEqual(RISIKOSTUFEN, ("gering", "mittel", "hoch"))
+
+    def test_unvollstaendige_analyse_blockiert_die_freigabe(self):
+        assessment = create_dsfa(
+            activity(), assessment_id="d", created_by="u-1",
+            answers={"sensible_daten": True, "systematische_beobachtung": True},
+        )
+        self.assertFalse(assessment.system_suggestion["complete"])
+        self.assertEqual(len(assessment.system_suggestion["unanswered"]), 10)
+        set_necessity(assessment, necessity="erforderlich", proportionality="angemessen")
+        add_risk_scenario(assessment, description="X", severity="gering",
+                          likelihood="gering", residual_risk="gering")
+        add_mitigation_measure(assessment, description="M", addresses="X", responsible="R")
+        set_human_decision(assessment, decision="durchfuehren", actor_id="u-3")
+        set_dsb_statement(assessment, statement="geprüft", vote="zustimmend")
+        with self.assertRaisesRegex(ValueError, "unvollständig"):
+            release_dsfa(assessment, releaser_id="u-2")
 
 
 if __name__ == "__main__":

@@ -3,6 +3,12 @@
 Diese Datei ist für alle Entwicklungsagenten verbindlich. `CLAUDE.md` und
 `CODEX.md` verweisen auf sie und dürfen keine abweichenden Regeln enthalten.
 
+## Aktueller Umfang
+
+Maßgeblich ist docs/adr/ADR-004-inhalts-framework.md. In dieser Phase werden Inhalte gepflegt: Anforderungen, Arbeitsaufträge, Skills und Projektvorlagen. Bestehende Softwareentwürfe sind nicht als fertige Dienste darzustellen. Für neue Projekte zuerst docs/start.md und vorlagen/ lesen.
+
+Die Einstufung in docs/verbindlichkeit.md legt den Projektumfang fest. Lies außerdem docs/ki-arbeitsablauf.md. Archivdateien sind historische Entwürfe und werden nicht automatisch übernommen. framework/ enthält optionale Referenzlogik.
+
 ## Vor dem Arbeiten
 
 1. Lies diese Datei, `docs/anforderungen.md`, die passende Skill-Datei und alle
@@ -17,7 +23,7 @@ Diese Datei ist für alle Entwicklungsagenten verbindlich. `CLAUDE.md` und
 - Plattformkern und Fachmodul sind getrennt. Fachlogik darf keine
   Mandantentrennung, serverseitige Rechteprüfung, Auditierung oder Freigabe
   umgehen.
-- Das Vier-Augen-Prinzip ist für verbindliche Freigaben technisch zu erzwingen;
+- Welche Vorgänge verbindlich freigegeben werden, wird im Projekt festgelegt. Für diese Freigaben ist das Vier-Augen-Prinzip technisch zu erzwingen;
   Selbstfreigabe ist nicht zulässig.
 - Jede neue Fachfunktion beschreibt Datenmodell, Nutzergruppen, Rollenmatrix,
   Statusübergänge, Exportbedarf und VVT-/DSFA-Bezug.
@@ -31,8 +37,7 @@ Diese Datei ist für alle Entwicklungsagenten verbindlich. `CLAUDE.md` und
 - Secrets, echte Personen- oder Falldaten und Produktionskonfigurationen
   gehören nicht in Git, Tests oder Logs.
 - Migrationen, Exporte und Statusübergänge werden mit Tests abgesichert.
-- Nach jeder Änderung: `python -m unittest discover -s tests -v`,
-  `python checks/validate_repo.py` und gegebenenfalls Frontend-/Container-Checks.
+- In diesem Framework-Repository nach Änderungen: `python -m unittest discover -s tests -v` und `python checks/validate_repo.py`. In abgeleiteten Projekten die vereinbarten Prüfungen aus dem projektspezifischen Testplan ausführen; fehlende Framework-Skripte nicht als vorhanden voraussetzen.
 
 ## Nicht erlaubt
 

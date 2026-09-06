@@ -12,3 +12,9 @@ coverage.xml
 .coverage
 reports/
 graphify-out/
+
+node_modules/
+*.tsbuildinfo
+
+# Historische lokale Softwareexperimente sind kein Teil des Inhaltsreleases.
+archiv/softwareentwuerfe/
