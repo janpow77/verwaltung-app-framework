@@ -25,16 +25,26 @@ REQUIRED = (
     "docs/processmodell.md", "docs/dsfa-werkzeug.md", "docs/security/bsi-baseline.md",
     "docs/rollen-und-rechte.md", "docs/akte-und-exporte.md",
     "contracts/process.yaml", "contracts/privacy.yaml", "skills/fachanwendung/SKILL.md",
-"INHALTSVERSION", "docs/verbindlichkeit.md", "docs/administration.md",
+    "INHALTSVERSION", "docs/verbindlichkeit.md", "docs/administration.md",
     "docs/pruefkatalog.md", "docs/ki-arbeitsablauf.md",
     "vorlagen/anwendbarkeit.md", "vorlagen/testplan.md", "vorlagen/release.md",
     "beispiele/raumbuchung/README.md", "beispiele/raumbuchung/spezifikation.md",
     "beispiele/raumbuchung/anwendbarkeit.md", "beispiele/raumbuchung/datenschutz.md",
     "beispiele/raumbuchung/testplan.md", "beispiele/raumbuchung/landing.md",
     "archiv/README.md", ".github/CODEOWNERS",
+    # Inhaltsversion 0.3.0: moderne kollaborative/analytische Anwendungen
+    "docs/produkt-ux-und-i18n.md", "docs/capabilities-und-ansichten.md",
+    "docs/ki-provider-und-secrets.md", "docs/kollaborative-artefakte.md",
+    "docs/prompt-und-agent-registry.md", "docs/datenimport-und-mapping.md",
+    "docs/reproduzierbarkeit-und-workspaces.md", "docs/redaction-pseudonymisierung.md",
+    "skills/produkt-ux-i18n/SKILL.md", "skills/prompt-agent-registry/SKILL.md",
+    "skills/daten-mapping-reproduzierbarkeit/SKILL.md", "skills/redaction-testdaten/SKILL.md",
 )
 
-AGENTS_TERMS = ("Mandantentrennung", "serverseitig", "Vier-Augen-Prinzip", "VVT", "DSFA")
+AGENTS_TERMS = (
+    "Mandantentrennung", "serverseitig", "Vier-Augen-Prinzip", "VVT", "DSFA",
+    "Prompt-Version", "Diff", "Mapping", "Reproduzierbarkeit",
+)
 
 #: Einstiegsdateien der Agenten. Sie dürfen keine eigenen Regeln aufstellen,
 #: sondern nur auf AGENTS.md verweisen (Regel aus AGENTS.md selbst).
@@ -153,6 +163,24 @@ def main() -> int:
             f"Framework-Version weicht ab: pyproject {v_pyproject.group(1)} "
             f"gegen Code {v_code.group(1)}"
         )
+
+    # Inhaltsversion und README müssen denselben veröffentlichten Stand nennen.
+    inhaltsversion = (ROOT / "INHALTSVERSION").read_text(encoding="utf-8").strip()
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    if f"Inhaltsversion: {inhaltsversion}" not in readme:
+        fehler.append(
+            f"README.md nennt die Inhaltsversion {inhaltsversion} nicht in der erwarteten Form"
+        )
+
+    # Die neuen Anforderungen und Prompt-Diff-Regeln dürfen nicht versehentlich verschwinden.
+    anforderungen = (ROOT / "docs/anforderungen.md").read_text(encoding="utf-8")
+    for fid in ("F-11", "F-12", "F-13", "F-14", "F-15", "F-16", "F-17", "F-18"):
+        if fid not in anforderungen:
+            fehler.append(f"docs/anforderungen.md fehlt {fid}")
+    registry = (ROOT / "docs/prompt-und-agent-registry.md").read_text(encoding="utf-8")
+    for begriff in ("Prompt-Diff", "Metadaten", "Agent Registry", "Evaluation"):
+        if begriff not in registry:
+            fehler.append(f"docs/prompt-und-agent-registry.md fehlt Kernbegriff: {begriff}")
 
     # Fachdomänen bleiben außerhalb des generischen Frameworks.
     verboten = ("kpang", "kraftstoff", "tankstelle", "bussgeld", "bußgeld")
