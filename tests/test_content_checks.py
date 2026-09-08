@@ -3,7 +3,7 @@ import json
 import unittest
 from pathlib import Path
 
-from checks.validate_content import validate_register
+from checks.validate_content import parse_test_catalog, validate_register
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +27,24 @@ class ContentChecksTest(unittest.TestCase):
     def test_unknown_test_is_rejected(self):
         self.data["mappings"][0]["tests"] = ["T-999"]
         self.assertTrue(validate_register(ROOT, self.data))
+
+    def test_existing_test_for_wrong_requirement_is_rejected(self):
+        self.data["mappings"][0]["tests"] = ["T-21"]
+        self.assertTrue(validate_register(ROOT, self.data))
+
+    def test_duplicate_test_id_is_rejected(self):
+        _, errors = parse_test_catalog(
+            "| T-21 | F-11, Ansichten | erste Prüfung |\n"
+            "| T-21 | F-08, Betrieb | andere Prüfung |\n"
+        )
+        self.assertTrue(errors)
+
+    def test_test_catalog_preserves_requirement_relations(self):
+        cases, errors = parse_test_catalog(
+            "| T-36 | F-05/F-07/F-08, Betrieb | Übung |\n"
+        )
+        self.assertEqual(errors, [])
+        self.assertEqual(cases["T-36"], {"F-05", "F-07", "F-08"})
 
     def test_unknown_source_is_rejected(self):
         self.data["mappings"][0]["sources"] = ["S-999"]

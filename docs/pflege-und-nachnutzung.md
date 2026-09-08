@@ -14,7 +14,7 @@ Vor organisationsübergreifender Veröffentlichung sind Repository-Zugang und Nu
 
 ## Inhaltsversion und Releaseablauf
 
-Der Stand steht in INHALTSVERSION (aktuell 0.3.0). Eine neue Hauptversion verändert bestehende Verpflichtungen grundlegend, eine Nebenversion ergänzt kompatible Inhalte, eine Korrekturversion berichtigt ohne neue Pflichten.
+Der Stand steht in INHALTSVERSION (aktuell 0.4.0). Eine neue Hauptversion verändert bestehende Verpflichtungen grundlegend, eine Nebenversion ergänzt kompatible Inhalte, eine Korrekturversion berichtigt ohne neue Pflichten.
 
 1. Änderung mit betroffenen Anforderungs-IDs und Folgen für Bestandsprojekte beschreiben.
 2. Vorlagen, Beispiel und Anweisungen auf Widersprüche prüfen.

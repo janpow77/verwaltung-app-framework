@@ -42,7 +42,7 @@ Stelle. Zusätzlich anwendbare sektorale oder behördliche Meldewege und Fristen
 festlegen; die DSGVO-Frist ersetzt diese nicht. Keine echte Meldung als Test
 versenden.
 
-## Übung T-21
+## Übung T-36
 
 Mit synthetischem Szenario „Export an falschen Datenraum“ eine Tischübung
 durchführen: Meldung aufnehmen, Kontaktvertretung erreichen, Fristbeginn

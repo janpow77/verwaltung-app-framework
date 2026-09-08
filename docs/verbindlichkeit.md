@@ -1,6 +1,6 @@
 # Verbindlichkeit und Anwendbarkeit
 
-Inhaltsversion: 0.3.0, Stand 2026-09-08. Dieses Modell beschreibt Projektanforderungen, nicht die Freigabe einer konkreten Anwendung.
+Inhaltsversion: 0.4.0, Stand 2026-09-08. Dieses Modell beschreibt Projektanforderungen, nicht die Freigabe einer konkreten Anwendung.
 
 | Stufe | Bedeutung | Umgang im Projekt |
 |---|---|---|
@@ -24,6 +24,14 @@ Immer erforderlich ist die Entscheidung über Datenraum, Zugriffsmodell, Datensc
 | F-08 | Erprobung oder vorgesehener Betrieb | Vor Betrieb: benannte Wartung, Sicherung, Wiederherstellung und Übergabe; Prototyp: offene Betriebsfragen sichtbar |
 | F-09 | Architektur und Änderungsgrenzen | Eigene Fachmodule: klar definierte Schnittstellen zur Identitäts-, Rechte- und Nachweislogik |
 | F-10 | Nutzer und Zugänglichkeit | Oberfläche: Tastatur, Beschriftungen, Fokus, Kontraste, Fehler und assistive Nutzung prüfen |
+| F-11 | Art und Intensität der grafischen Nutzung | Regelmäßig genutzte oder kollaborative UI: Designsystem, relevante Mehrfachansichten, Responsive-Verhalten, Bild-/Hintergrund- und Performancekonzept festlegen |
+| F-12 | Nutzerkreis und Sprachen/Locales | Mehrsprachiger oder internationaler Nutzerkreis: i18n-Ressourcen, Sprachwahl, Fallback und locale-abhängige Formate technisch vorsehen |
+| F-13 | Funktionsumfang und Nutzerrollen | Umfangreiche/modulare Anwendung: Capabilities, Aktivierungsebenen und progressive Freischaltung definieren; Autorisierung bleibt serverseitig |
+| F-14 | Nutzung externer/lokaler KI-Provider | Mehrere Provider, BYOK oder persönliche Endpunkte: Gateway-/Providervertrag, Secret Store, Datenklassen und Provider-Protokollierung umsetzen |
+| F-15 | Teilbare fachliche Artefakte | Prompts, Agenten, Checklisten, Strategien, Regelwerke oder Templates: Versionen, Forks, Reviews und fachlich lesbare Diffs; Release-Versionen unveränderlich |
+| F-16 | Datenimport aus fremden Strukturen | CSV/XLSX/API/Mehrtabellen-Import: versioniertes semantisches Mapping, Transformation, Vorschau, Validierung und Importnachweis |
+| F-17 | Analyse, Simulation, ML/KI oder Notebook-Ausführung | Run-Manifest, Seeds/Parameter/Fingerprints, Versionsbezug und – bei interaktiven Workspaces – Isolation, Ressourcenlimits und Kernel-/Session-Lifecycle |
+| F-18 | Ableitung von Test-/Austauschdaten aus realen Fällen | Redaction/Pseudonymisierung/Anonymisierung/Synthetic Twin unterscheiden, Zuordnungstabellen trennen, Dokumente technisch prüfen und Human-Review vor Weitergabe vorsehen |
 
 SOLL: organisationsweit unterstützte Technologien, wiederverwendbare Komponenten und automatisierte wiederkehrende Prüfungen nutzen. OIDC/Keycloak, PostgreSQL/RLS und Copier sind technische Optionen; ihre Nennung ist kein automatischer Pflichtumfang.
 

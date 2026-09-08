@@ -9,7 +9,7 @@ Quellenprüfung durch / Datum / nächste Wiedervorlage: […]
 |---|---|---|---|---|---|---|
 | […] | […] | offen | […] | nicht geprüft | […] | offen |
 
-Alle F-01 bis F-10 behandeln. Zusätzliche anwendbare Originalanforderungen als
+Alle F-01 bis F-18 behandeln. Zusätzliche anwendbare Originalanforderungen als
 eigene Zeilen aufnehmen. Mehrere Tests/Belege je Anforderung sind möglich;
 ein erfolgreicher Test deckt nicht automatisch alle Aspekte ab.
 

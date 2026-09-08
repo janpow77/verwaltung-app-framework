@@ -1,20 +1,28 @@
 {
   "schema_version": 1,
-  "content_version": "0.3.0",
+  "content_version": "0.4.0",
   "reviewed_at": "2026-09-08",
   "review_due": "2027-03-08",
   "sources_document": "docs/standards.md",
   "sources": ["S-01", "S-02", "S-03", "S-04", "S-05", "S-06", "S-07", "S-08", "S-09"],
   "mappings": [
     {"requirement": "F-01", "sources": ["S-03", "S-04", "S-07"], "tests": ["T-01"], "evidence": "vorlagen/standardsnachweis.md"},
-    {"requirement": "F-02", "sources": ["S-03", "S-04"], "tests": ["T-02", "T-03", "T-04", "T-13"], "evidence": "vorlagen/testplan.md"},
+    {"requirement": "F-02", "sources": ["S-03", "S-04"], "tests": ["T-02", "T-03", "T-04"], "evidence": "vorlagen/testplan.md"},
     {"requirement": "F-03", "sources": ["S-03"], "tests": ["T-05", "T-08", "T-20"], "evidence": "vorlagen/testplan.md"},
     {"requirement": "F-04", "sources": ["S-04", "S-05", "S-07"], "tests": ["T-09", "T-10", "A-08"], "evidence": "vorlagen/barrierefreiheit.md"},
-    {"requirement": "F-05", "sources": ["S-07"], "tests": ["T-11", "T-12", "T-21"], "evidence": "vorlagen/datenschutz.md"},
+    {"requirement": "F-05", "sources": ["S-07"], "tests": ["T-11", "T-12", "T-36"], "evidence": "vorlagen/datenschutz.md"},
     {"requirement": "F-06", "sources": ["S-03"], "tests": ["T-06"], "evidence": "vorlagen/testplan.md"},
-    {"requirement": "F-07", "sources": ["S-01", "S-02", "S-03", "S-04", "S-09"], "tests": ["T-07", "T-13", "T-14", "T-19", "T-21", "T-22"], "evidence": "vorlagen/sbom.md"},
-    {"requirement": "F-08", "sources": ["S-03", "S-09"], "tests": ["T-15", "T-21", "T-22"], "evidence": "vorlagen/sicherheitsvorfall.md"},
-    {"requirement": "F-09", "sources": ["S-03", "S-04"], "tests": ["T-23"], "evidence": "vorlagen/standardsnachweis.md"},
-    {"requirement": "F-10", "sources": ["S-05", "S-06", "S-08"], "tests": ["T-16", "T-17", "T-18", "A-01", "A-02", "A-03", "A-04", "A-05", "A-06", "A-07", "A-08", "A-09", "A-10"], "evidence": "vorlagen/barrierefreiheit.md"}
+    {"requirement": "F-07", "sources": ["S-01", "S-02", "S-03", "S-04", "S-09"], "tests": ["T-07", "T-13", "T-14", "T-19", "T-36", "T-37"], "evidence": "vorlagen/sbom.md"},
+    {"requirement": "F-08", "sources": ["S-03", "S-09"], "tests": ["T-15", "T-36", "T-37"], "evidence": "vorlagen/sicherheitsvorfall.md"},
+    {"requirement": "F-09", "sources": ["S-03", "S-04"], "tests": ["T-38"], "evidence": "vorlagen/standardsnachweis.md"},
+    {"requirement": "F-10", "sources": ["S-05", "S-06", "S-08"], "tests": ["T-16", "T-17", "T-18", "A-01", "A-02", "A-03", "A-04", "A-05", "A-06", "A-07", "A-08", "A-09", "A-10"], "evidence": "vorlagen/barrierefreiheit.md"},
+    {"requirement":"F-11","sources":["S-05","S-06"],"tests":["T-21","T-22"],"evidence":"vorlagen/standardsnachweis.md"},
+    {"requirement":"F-12","sources":["S-05","S-06"],"tests":["T-23"],"evidence":"vorlagen/standardsnachweis.md"},
+    {"requirement":"F-13","sources":["S-04"],"tests":["T-24"],"evidence":"vorlagen/standardsnachweis.md"},
+    {"requirement":"F-14","sources":["S-04","S-07"],"tests":["T-25"],"evidence":"vorlagen/standardsnachweis.md"},
+    {"requirement":"F-15","sources":["S-03","S-04"],"tests":["T-26","T-27","T-28","T-29"],"evidence":"vorlagen/standardsnachweis.md"},
+    {"requirement":"F-16","sources":["S-03","S-04"],"tests":["T-30"],"evidence":"vorlagen/standardsnachweis.md"},
+    {"requirement":"F-17","sources":["S-03","S-04"],"tests":["T-29","T-31","T-32"],"evidence":"vorlagen/standardsnachweis.md"},
+    {"requirement":"F-18","sources":["S-07"],"tests":["T-33","T-34","T-35"],"evidence":"vorlagen/standardsnachweis.md"}
   ]
 }

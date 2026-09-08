@@ -3,7 +3,7 @@
 Das Framework gibt eine projektbezogene Arbeitsmethode vor, keine pauschale
 Rechtskonformität oder Zertifizierung. Maßgeblich für MUSS/BEDINGT/SOLL bleibt
 [Verbindlichkeit](verbindlichkeit.md). Die folgenden Referenzen ergänzen die
-Anforderungen F-01 bis F-10; sie ersetzen weder Fachrecht noch Behördenvorgaben.
+Anforderungen F-01 bis F-18; sie ersetzen weder Fachrecht noch Behördenvorgaben.
 
 ## Quellenregister
 
@@ -36,6 +36,11 @@ Quellen, vorhandene Akzeptanzfälle und eine Nachweisvorlage zu. Das ist eine
 thematische Zuordnung eigener Anforderungen, keine vollständige Abbildung aller
 BSI-/ASVS-/EN-Einzelanforderungen. Insbesondere F-03 und F-09 enthalten eigene
 Architekturentscheidungen, die nicht unmittelbar aus einer Norm folgen.
+Das gilt ebenfalls für die Produkt-, Kollaborations- und Analyseentscheidungen
+F-11 bis F-18: Die Quellen markieren berührte Sicherheits-, Datenschutz- oder
+Zugänglichkeitsaspekte, keine Normpflicht zu Mehrfachansichten, bestimmten
+Sprachen, KI-Providern, Registries oder Notebooks. Die bedingte Anwendbarkeit
+bleibt erhalten.
 
 Im Projekt [Standardsnachweis](../vorlagen/standardsnachweis.md) anlegen:
 Quelle mit Fassung und genauer Fundstelle → anwendbare Einzelanforderung →

@@ -28,7 +28,7 @@ Dieses Inhaltsrepo erzeugt keine fingierte Anwendungs-SBOM.
    prüfen. SBOM und Scanberichte geschützt mit dem Release aufbewahren;
    internen Paketnamen nicht ungeprüft öffentlich zugänglich machen.
 
-## Prüfung T-22
+## Prüfung T-37
 
 In isolierter Testumgebung eine bekannte Testabhängigkeit ändern: SBOM muss
 Version und Abhängigkeitsbeziehung korrekt ändern. Falschen Artefaktdigest und

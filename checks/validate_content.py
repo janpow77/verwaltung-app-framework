@@ -8,6 +8,17 @@ from datetime import date
 from pathlib import Path
 
 
+def parse_test_catalog(text: str) -> tuple[dict[str, set[str]], list[str]]:
+    """Eindeutige Fall-IDs samt ausdrücklich genannten F-Bezügen lesen."""
+    cases: dict[str, set[str]] = {}
+    errors: list[str] = []
+    for case, body in re.findall(r"^\| ([TA]-\d{2}) \|([^\n]+)", text, re.M):
+        if case in cases:
+            errors.append(f"Doppelte Prüffall-ID: {case}")
+        cases[case] = set(re.findall(r"\bF-\d{2}\b", body))
+    return cases, errors
+
+
 def validate_register(root: Path, register: dict | None = None) -> list[str]:
     """Optionaler Registerparameter erlaubt isolierte negative Tests."""
     errors: list[str] = []
@@ -53,7 +64,9 @@ def validate_register(root: Path, register: dict | None = None) -> list[str]:
         requirements = set(re.findall(r"\bF-\d{2}\b", requirements_text))
         tests_text = (root / "docs/pruefkatalog.md").read_text(encoding="utf-8")
         tests_text += (root / "docs/barrierefreiheit.md").read_text(encoding="utf-8")
-        test_ids = set(re.findall(r"^\| ([TA]-\d{2}) \|", tests_text, re.M))
+        cases, catalog_errors = parse_test_catalog(tests_text)
+        errors.extend(catalog_errors)
+        test_ids = set(cases)
         mappings = data.get("mappings")
         if not isinstance(mappings, list):
             return errors + ["Anforderungszuordnungen fehlen"]
@@ -72,6 +85,10 @@ def validate_register(root: Path, register: dict | None = None) -> list[str]:
                 if (not isinstance(refs, list) or not refs
                         or any(not isinstance(ref, str) or ref not in allowed for ref in refs)):
                     errors.append(f"{req}: ungültige oder fehlende {key}-Referenz")
+                elif key == "tests" and isinstance(req, str):
+                    for ref in refs:
+                        if cases[ref] and req not in cases[ref]:
+                            errors.append(f"{req}: Prüffall {ref} gehört zu einer anderen Anforderung")
             local_file(row.get("evidence"))
         if seen != requirements:
             errors.append("Nicht alle F-Anforderungen sind eindeutig zugeordnet")
