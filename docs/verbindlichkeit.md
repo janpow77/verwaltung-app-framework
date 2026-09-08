@@ -1,6 +1,6 @@
 # Verbindlichkeit und Anwendbarkeit
 
-Inhaltsversion: 0.2.0, Stand 2026-09-06. Dieses Modell beschreibt Projektanforderungen, nicht die Freigabe einer konkreten Anwendung.
+Inhaltsversion: 0.3.0, Stand 2026-09-08. Dieses Modell beschreibt Projektanforderungen, nicht die Freigabe einer konkreten Anwendung.
 
 | Stufe | Bedeutung | Umgang im Projekt |
 |---|---|---|

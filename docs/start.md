@@ -1,6 +1,12 @@
 # Start mit dem Inhalts-Framework
 
-Stand: 2026-09-06. Zielgruppe sind Beschäftigte, die eine eigene Fachanwendung mit KI entwickeln möchten, sowie die später prüfenden Stellen.
+Stand: 2026-09-08. Zielgruppe sind Beschäftigte, die eine eigene Fachanwendung mit KI entwickeln möchten, sowie die später prüfenden Stellen.
+
+Das [Quellenregister](standards.md) gehört von Beginn an zur Planung.
+[Standardsnachweis](../vorlagen/standardsnachweis.md) und
+[Entscheidungsregister](../vorlagen/entscheidungen.md) im eigenen Projekt
+führen. Barrierefreiheits-, Vorfall- und SBOM-Unterlagen nach Anwendbarkeit
+bearbeiten; eine bloß kopierte Vorlage ist kein erfüllter Nachweis.
 
 1. Lies README.md, AGENTS.md und docs/anforderungen.md.
 2. Lege ein eigenes Projekt-Repository an. Übernimm README.md, INHALTSVERSION, AGENTS.md, CLAUDE.md, CODEX.md, GEMINI.md sowie docs/, contracts/, skills/, prompts/, vorlagen/ und beispiele/ in gleicher relativer Struktur. Passe die Projekt-README an und fülle die Vorlagen im Projekt aus. Archiv und Python-Referenzkern werden nicht benötigt. Dokumentiere die verwendete Framework-Version bzw. den Commit.

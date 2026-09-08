@@ -7,7 +7,10 @@ eine Anwendung auf diesem Framework mitbringen muss, damit die zuständige
 Stelle den Grundschutz-Check überhaupt durchführen kann.
 
 Grundlage sind BSI-Standard 200-2 (IT-Grundschutz-Methodik), BSI-Standard
-200-3 (Risikoanalyse) und das IT-Grundschutz-Kompendium.
+200-3 (Risikoanalyse) und das IT-Grundschutz-Kompendium. Quellenstände,
+Abrufgrenzen und Pflege stehen im [Standardsregister](../standards.md).
+Die Anwendbarkeit und Technologieoffenheit nach
+[Verbindlichkeit](../verbindlichkeit.md) gehen den technischen Beispielen vor.
 
 ## 1. Geltungsbereich und Abgrenzung
 
@@ -49,6 +52,8 @@ Systeme, kann der Bedarf des Einzelsystems geringer sein
 Bei **hohem oder sehr hohem** Schutzbedarf ist zusätzlich eine Risikoanalyse
 nach BSI-Standard 200-3 durchzuführen. Deren Ergebnis, alle akzeptierten
 Restrisiken und die zeichnende Person gehören in die Projektakte.
+Weitere Auslöser sind insbesondere unzureichend durch Bausteine abgedeckte
+Zielobjekte und atypische Einsatzszenarien; die Modellierung muss dies prüfen.
 
 Für den Datenschutzteil gilt die eigenständige Bewertung nach
 [`docs/dsfa-werkzeug.md`](../dsfa-werkzeug.md); Schutzbedarf und
@@ -56,9 +61,13 @@ Schwellwertanalyse ersetzen einander nicht.
 
 ## 3. Bausteine, Umsetzung und offene Punkte
 
-Spalte „Anforderung" nennt das Niveau nach IT-Grundschutz (B = Basis,
-S = Standard). Spalte „offen" ist bei Abgabe an die Sicherheitsprüfung
-auszufüllen — leer bedeutet nicht erfüllt, sondern nicht bearbeitet.
+Die Tabelle ist eine eigene thematische Orientierung, kein vollständiger
+Katalog der offiziellen Einzelanforderungen. B/S benennt lediglich die bisherige
+Orientierung an Basis-/Standardabsicherung, keine bestätigte Zuordnung jeder
+genannten Maßnahme zu einem BSI-Niveau. Für einen Grundschutz-Check sind die
+anwendbaren Einzel-IDs, deren tatsächliches Niveau und Nachweise aus der gewählten
+Originalausgabe im [Standardsnachweis](../../vorlagen/standardsnachweis.md)
+zu ergänzen. Leer bedeutet nicht erfüllt, sondern nicht bearbeitet.
 
 | Baustein | Anf. | Was die Anwendung mitbringen muss | Offen / bei der Behörde |
 | --- | --- | --- | --- |
@@ -70,10 +79,10 @@ auszufüllen — leer bedeutet nicht erfüllt, sondern nicht bearbeitet.
 | **OPS.1.1.2** Ordnungsgemäße IT-Administration | B | Getrennte Administrationskonten, dokumentierte administrative Eingriffe | Betriebskonzept der Behörde |
 | **OPS.1.1.3** Patch- und Änderungsmanagement | B | Festgeschriebene Abhängigkeiten mit Lockfile, dokumentierter Aktualisierungsrhythmus, Update mit Sicherung und Migration | Freigabeprozess der Behörde |
 | **OPS.1.1.4** Schutz vor Schadprogrammen | B | Prüfung hochgeladener Dateien vor der Verarbeitung, Ablage außerhalb des Webroots, Dateinamensbereinigung, Typ- und Größengrenzen | Schadsoftwareprüfung der Behörde |
-| **OPS.1.1.5** Protokollierung | B+S | Audit-Log mit Person, Zeit, Aktion, Objekt sowie Vorher und Nachher; Zugriffsprotokoll; Export- und Freigabeaktionen protokolliert; Protokolle unveränderbar | Weiterleitung an ein zentrales Protokollsystem |
+| **OPS.1.1.5** Protokollierung | B+S | Audit-Log mit erforderlicher Identität, Zeit, Aktion und Objekt; Änderungen minimiert über Versionsreferenzen statt pauschaler Inhaltskopien; Export- und Freigabeaktionen nachweisbar; Manipulationsschutz und Löschfristen | Weiterleitung an ein zentrales Protokollsystem |
 | **OPS.1.1.6** Software-Tests und Freigaben | B | Testnachweis vor der Freigabe, Freigabe durch eine zweite benannte Person, Freigabeentscheidung dokumentiert — entspricht dem Landingprozess in [`docs/processmodell.md`](../processmodell.md) | |
 | **CON.1** Kryptokonzept | B | Verfahren und Schlüssellängen nach **BSI TR-02102-1/-2**, keine eigenen Verfahren, Schlüsselwechsel dokumentiert | Schlüsselverwaltung der Behörde |
-| **CON.2** Datenschutz | B | VVT, Schwellwertanalyse, DSFA, Löschkonzept, Betroffenenrechte | Freigabe durch die oder den DSB |
+| **CON.2** Datenschutz | B | VVT, Schwellwertanalyse, DSFA soweit erforderlich, Löschkonzept, Betroffenenrechte | Verantwortliche Stelle entscheidet; DSB beraten und überwachen |
 | **CON.3** Datensicherung | B | Verschlüsselte Sicherung, dokumentierte und **geprobte** Wiederherstellung, Nachweise append-only | Zweiter Ablageort, Aufbewahrungsregel |
 | **CON.6** Löschen und Vernichten | B | Aufbewahrungsfristen je Datenart, automatische Löschung mit Nachweis, ausdrückliche Begründung für Daten ohne Frist | Aktenordnung der Behörde |
 | **CON.8** Software-Entwicklung | B+S | Anforderungen, Reviews, Tests, Linter, Typprüfung, Abhängigkeits-, Geheimnis- und statische Sicherheitsprüfung in der CI, ADRs | Externer Penetrationstest |
@@ -101,8 +110,9 @@ teilweise KI-gestützt betriebene Anwendungen. Dafür gilt zusätzlich:
 
 ## 5. Grundschutz-Check je Anforderung
 
-Für die Abgabe an die Sicherheitsprüfung ist Abschnitt 3 je Zeile mit einem
-Umsetzungsstatus zu versehen:
+Für die Abgabe an die Sicherheitsprüfung ist Abschnitt 3 zunächst je Thema
+mit einem Umsetzungsstatus zu versehen. Erst der ergänzte Abgleich der
+Original-Einzelanforderungen bildet den eigentlichen Grundschutz-Check:
 
 | Status | Bedeutung |
 | --- | --- |

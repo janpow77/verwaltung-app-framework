@@ -10,6 +10,11 @@
 - Datenschutzunterlagen und Schutzbedarf: […]
 - Prüfbericht und offene Befunde: […]
 - Quellcodezugang, Abhängigkeiten und Nutzungsrechte: […]
+- [Standardsnachweis](standardsnachweis.md), Quellenfassungen und offene Geltungsfragen: […]
+- [Barrierefreiheitsprotokoll](barrierefreiheit.md), Umfang und Restbefunde: […]
+- [SBOM-Nachweis](sbom.md), soweit Software ausgeliefert wird: […]
+- Vorfallkontakte und synthetischer Übungsnachweis nach [Vorfallakte](sicherheitsvorfall.md): […]
+- [Nutzungsrechte](nutzungsrechte.md) und [Entscheidungsregister](entscheidungen.md): […]
 
 ## Entscheidung
 

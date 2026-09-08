@@ -13,6 +13,13 @@ Gemeinsame Grundlage für Claude, Codex und Gemini: AGENTS.md. Die Agenteneinsti
 
 Für jeden Auftrag: Ziel, Anforderungs-IDs, erlaubter Änderungsbereich, zu lesende Unterlagen, Prüffälle und gewünschtes Ergebnisformat nennen. prompts/entwicklung.md und prompts/review.md sind wiederverwendbare Einstiege.
 
+Bei Standards- und Nachweisprüfung zusätzlich
+[standards-pruefung](../skills/standards-pruefung/SKILL.md) explizit laden.
+Das [Quellenregister](standards.md) verbindet die F-IDs mit Prüffällen;
+[Standardsnachweis](../vorlagen/standardsnachweis.md) und
+[Entscheidungsregister](../vorlagen/entscheidungen.md) halten tatsächliche
+Ergebnisse und offene menschliche Entscheidungen getrennt fest.
+
 ## Ungeklärte Fragen
 
 KI dokumentiert die Frage, Alternativen und betroffene Folgearbeiten im Entscheidungsregister. Sie darf technische, reversible Details begründet wählen; fachliche Befugnisse, Datenschutzentscheidungen und Betriebszusagen nicht erfinden. Unabhängige Arbeit kann weitergehen. Keine Umsetzung auf Basis einer ungeklärten kritischen Berechtigung.

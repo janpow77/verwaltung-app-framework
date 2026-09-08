@@ -8,5 +8,6 @@ Lesereihenfolge:
 3. [Datenschutzentwurf](datenschutz.md)
 4. [Testplan und Prüfbericht](testplan.md)
 5. [Landing-Bericht](landing.md)
+6. [Ergänzung zu Standards und Nachweisen für Framework 0.3.0](standards-und-nachweise.md)
 
 [Übersicht zum Beispiel](../raumbuchung.md).

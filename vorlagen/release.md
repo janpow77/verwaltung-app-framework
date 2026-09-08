@@ -17,5 +17,7 @@ Status: Entwurf / geprüft / zur Veröffentlichung entschieden.
 - Herkunft übernommener Inhalte und zulässige Nutzung: […]
 - Lizenz-/Nutzungsentscheidung, berechtigter Personenkreis: […]
 - Veröffentlichungsort und zuständige Entscheidung: […]
+- Quellenfassungen / Überprüfungsgrenzen / nächste Wiedervorlage: […]
+- Ausgefüllte [Nutzungsrechte](nutzungsrechte.md) und [Entscheidungen](entscheidungen.md): […]
 
 Keine Namen oder Zustimmungen stellvertretend erfinden. Ein Git-Tag oder CODEOWNERS-Eintrag ersetzt diese Entscheidungen nicht.

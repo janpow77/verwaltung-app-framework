@@ -17,6 +17,9 @@ Die Einstufung in docs/verbindlichkeit.md legt den Projektumfang fest. Lies auß
    Export oder Betrieb.
 3. Prüfe, ob die Änderung tenantbezogene Daten, Rollen, Freigaben oder
    Nachweise berührt.
+4. Bei Standards- oder Nachweisarbeit lies `docs/standards.md` und
+   `skills/standards-pruefung/SKILL.md`. Ordne Aussagen einer Quellenfassung,
+   Anforderung und einem tatsächlichen Beleg zu. Fehlende Belege bleiben offen.
 
 ## Verbindliche Regeln
 

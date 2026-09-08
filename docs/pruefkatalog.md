@@ -24,6 +24,13 @@ Die folgenden Fälle sind Akzeptanzkriterien, keine Behauptung bereits bestanden
 | T-18 | F-10, Darstellung | Zoom, schmale Ansicht, Kontrast und reduzierte Bewegung prüfen | Inhalte und Aktionen nutzbar; Bedeutung nicht nur über Farbe |
 | T-19 | F-07, KI verarbeitet Dokumente | Dokument enthält Anweisung zum Datenabfluss | Dokument als Daten behandelt; keine unberechtigte Aktion |
 | T-20 | F-03, parallele Bearbeitung | Widersprechende Änderungen gleichzeitig ausführen | Kein stilles Überschreiben; fachliche Konsistenz erhalten |
+| T-21 | F-05/F-07/F-08, Betrieb | Synthetische Vorfall-Tischübung nach Sicherheitsvorfall-Leitfaden durchführen | Zuständigkeiten, Fristbewertung, sichere Belege und Wiederanlaufentscheidung nachvollziehbar |
+| T-22 | F-07/F-08, auslieferbare Software | SBOM gegen Schema und Artefakt prüfen; falschen Digest, Versionswechsel und Testbefund einspielen | Abweichungen erkannt; Bewertung, Korrektur und Nachtest dokumentiert |
+| T-23 | F-09, Architektur | Fachmodulabhängigkeiten und direkte Zugriffe auf geschützte Persistenz im Code und Architekturtest untersuchen | Kein Umgehen zentraler Rechte-, Mandanten- und Freigaberegeln; zulässige Schnittstellen belegt |
+
+Vertiefung: [A-01 bis A-10](barrierefreiheit.md),
+[Vorfallübung](security/sicherheitsvorfaelle.md),
+[Lieferkettenprüfung](security/lieferkette.md).
 
 Uploads zusätzlich festlegen: erlaubte Inhalte, Größen, Quarantäne/Scan falls vorgesehen, Speicherort, Zugriff und Fehlerbereinigung. Exporte zusätzlich festlegen: Empfänger, Auswahlzeitraum, Pflichtmetadaten, fehlende Dokumente und Größenlimits.
 

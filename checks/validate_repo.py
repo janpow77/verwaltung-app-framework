@@ -13,6 +13,10 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+if __package__:
+    from .validate_content import validate_register
+else:
+    from validate_content import validate_register
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -32,6 +36,13 @@ REQUIRED = (
     "beispiele/raumbuchung/anwendbarkeit.md", "beispiele/raumbuchung/datenschutz.md",
     "beispiele/raumbuchung/testplan.md", "beispiele/raumbuchung/landing.md",
     "archiv/README.md", ".github/CODEOWNERS",
+    "docs/standards.md", "docs/standards-register.json", "docs/barrierefreiheit.md",
+    "docs/security/sicherheitsvorfaelle.md", "docs/security/lieferkette.md",
+    "vorlagen/standardsnachweis.md", "vorlagen/barrierefreiheit.md",
+    "vorlagen/sicherheitsvorfall.md", "vorlagen/sbom.md",
+    "vorlagen/nutzungsrechte.md", "vorlagen/entscheidungen.md",
+    "skills/standards-pruefung/SKILL.md",
+    "beispiele/raumbuchung/standards-und-nachweise.md",
 )
 
 AGENTS_TERMS = ("Mandantentrennung", "serverseitig", "Vier-Augen-Prinzip", "VVT", "DSFA")
@@ -82,7 +93,7 @@ def _fehlt(pfade: tuple[str, ...]) -> list[str]:
 
 
 def main() -> int:
-    fehler: list[str] = []
+    fehler: list[str] = validate_register(ROOT)
 
     missing = _fehlt(REQUIRED)
     if missing:
@@ -176,7 +187,8 @@ def main() -> int:
 
     print(
         f"Framework-Struktur vollständig: {len(REQUIRED)} Pflichtdateien, "
-        "Verträge stimmen mit Modell und Statusmaschine überein"
+        "Verträge stimmen mit Modell und Statusmaschine überein; "
+        "Standardszuordnungen konsistent (kein Konformitätsnachweis)"
     )
     return 0
 

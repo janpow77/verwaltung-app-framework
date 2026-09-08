@@ -23,10 +23,13 @@ Beschäftigte nutzen diese Inhalte bereits beim Start einer eigenen Entwicklung.
 - [Durchgängiger KI-Arbeitsablauf](docs/ki-arbeitsablauf.md)
 - [Anwendbarkeit und offene Entscheidungen](vorlagen/anwendbarkeit.md)
 - [Inhaltsrelease und Zuständigkeiten](vorlagen/release.md)
+- [Standards, Quellen und Nachweise](docs/standards.md)
+- [Barrierefreiheit](docs/barrierefreiheit.md), [Sicherheitsvorfälle](docs/security/sicherheitsvorfaelle.md) und [SBOM](docs/security/lieferkette.md)
+- [Nutzungsrechte](vorlagen/nutzungsrechte.md) und [Entscheidungsregister](vorlagen/entscheidungen.md)
 
 ## Umfang und Stand
 
-Inhaltsversion: 0.2.0 · Stand: 2026-09-06. Das Ergebnis dieser Phase ist das Inhalts-Repository.
+Inhaltsversion: 0.3.0 · Stand: 2026-09-08. Das Ergebnis dieser Phase ist das Inhalts-Repository; die Versionsnummer ist keine organisatorische Freigabe.
 Mandanten, Nutzerrechte, Akten, Exporte und Datenschutz sind Anforderungen an die entstehende Anwendung. Eine fertige GUI oder produktive Dienste werden in dieser Phase nicht zugesagt.
 
 Unvollständige Softwareentwürfe liegen ausschließlich im [Archiv](archiv/README.md). Der Python-Kern unter framework/ bleibt separat als getestete Referenzlogik erhalten. Beides gehört nicht zum zu übernehmenden Projektpaket. Details: [ADR-004](docs/adr/ADR-004-inhalts-framework.md).
