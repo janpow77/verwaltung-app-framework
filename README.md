@@ -2,6 +2,7 @@
 
 [![Framework checks](https://github.com/janpow77/verwaltung-app-framework/actions/workflows/checks.yml/badge.svg)](https://github.com/janpow77/verwaltung-app-framework/actions/workflows/checks.yml)
 ![Python](https://img.shields.io/badge/python-%E2%89%A53.11-blue)
+[![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-green)](LICENSE)
 
 **Anforderungen, Agentenanweisungen, Skills und Projektvorlagen für KI-gestützte Fachanwendungen aus der Verwaltung.** Beschäftigte übernehmen die Inhalte beim Start einer eigenen Entwicklung; Claude, Codex oder Gemini setzen die Anwendung anhand von Spezifikation und Vorgaben um, anschließend wird das Projekt im Landingprozess vorgestellt und geprüft.
 
@@ -139,5 +140,4 @@ Beiträge nach [CONTRIBUTING.md](CONTRIBUTING.md): Der Framework-Kern bleibt gen
 
 ## Lizenz
 
-<!-- TODO: Keine LICENSE-Datei vorhanden; Nutzungsrechte sind laut CHANGELOG noch offen. -->
-Eine Lizenz ist noch nicht festgelegt. Zur Nachnutzung siehe [Nutzungsrechte](vorlagen/nutzungsrechte.md) und [Pflege und Nachnutzung](docs/pflege-und-nachnutzung.md).
+Die Inhalte dieses Repositorys stehen unter der [MIT-Lizenz](LICENSE), Copyright (c) 2026 Jan Riener. Übernommene Drittinhalte behalten ihre eigenen Bedingungen. Zur Nachnutzung siehe [Nutzungsrechte](vorlagen/nutzungsrechte.md) und [Pflege und Nachnutzung](docs/pflege-und-nachnutzung.md).

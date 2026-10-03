@@ -1,6 +1,6 @@
 # Archiv: unvollständige Softwareentwürfe
 
-Die Softwareentwürfe bleiben lokal und auf Hetzner erhalten. Sie werden nicht in das GitHub-Inhaltsrepository aufgenommen; dieses enthält hier nur die Einordnung.
+Die Softwareentwürfe bleiben außerhalb dieses Repositorys in einer internen Ablage erhalten. Sie werden nicht in das GitHub-Inhaltsrepository aufgenommen; dieses enthält hier nur die Einordnung.
 
 Diese Entwürfe stammen aus einem früheren technischen Arbeitsstand. Sie sind kein Bestandteil des aktuellen Inhaltsangebots und keine Vorlage zum produktiven Einsatz.
 
