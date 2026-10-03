@@ -28,7 +28,7 @@ Der Stand steht in INHALTSVERSION (aktuell 0.4.0). Eine neue Hauptversion verän
 
 Inhaltspflege, Fachprüfung, Datenschutz-/Sicherheitsprüfung und Veröffentlichungsverantwortung sind Rollen, deren Besetzung noch zu entscheiden ist. Es werden keine Personen stellvertretend benannt. Die Releasevorlage hält den Status offen.
 
-Es ist keine pauschale Open-Source-Lizenz festgelegt. Vor Weitergabe Herkunft, Rechteinhaberschaft und beabsichtigten Empfängerkreis klären. Übernommene Drittinhalte behalten ihre jeweiligen Bedingungen; bloße Verfügbarkeit im Repository ist kein Nutzungsnachweis.
+Die Inhalte dieses Repositorys stehen unter der MIT-Lizenz (siehe `LICENSE` im Wurzelverzeichnis). Für eigene, daraus abgeleitete Projekte vor Weitergabe Herkunft, Rechteinhaberschaft und beabsichtigten Empfängerkreis klären. Übernommene Drittinhalte behalten ihre jeweiligen Bedingungen; bloße Verfügbarkeit im Repository ist kein Nutzungsnachweis.
 
 Vorbereitete Unterlagen: [Nutzungsrechte](../vorlagen/nutzungsrechte.md),
 [Entscheidungen](../vorlagen/entscheidungen.md) und

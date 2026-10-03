@@ -1,11 +1,12 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "verwaltung-app-framework"
 version = "0.1.0"
 description = "Secure-by-Default Framework für KI-gestützte Verwaltungsanwendungen"
+license = "MIT"
 requires-python = ">=3.11"
 
 [tool.setuptools.packages.find]
